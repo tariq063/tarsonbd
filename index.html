@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="MeTriqo — প্রিমিয়াম ই-কমার্স। সারা বাংলাদেশে ক্যাশ অন ডেলিভারিতে উন্নত মানের কিচেন অ্যাপ্লায়েন্স।" />
+  <title>MeTriqo — প্রিমিয়াম ই-কমার্স</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ===== Announcement / Trust marquee ===== -->
+  <div class="topbar">
+    <div class="marquee">
+      <div class="marquee__track">
+        <span>🔥 মেগা সেল — ৪০% পর্যন্ত ছাড়</span><span>•</span>
+        <span>🚚 দ্রুত ও ফ্রি ডেলিভারি</span><span>•</span>
+        <span>💵 ক্যাশ অন ডেলিভারি</span><span>•</span>
+        <span>✅ ১০০% অরিজিনাল পণ্য</span><span>•</span>
+        <span>📞 হটলাইন: ০১৭১২-৩৪৫৬৭৮</span><span>•</span>
+        <span>🔥 মেগা সেল — ৪০% পর্যন্ত ছাড়</span><span>•</span>
+        <span>🚚 দ্রুত ও ফ্রি ডেলিভারি</span><span>•</span>
+        <span>💵 ক্যাশ অন ডেলিভারি</span><span>•</span>
+        <span>✅ ১০০% অরিজিনাল পণ্য</span><span>•</span>
+        <span>📞 হটলাইন: ০১৭১২-৩৪৫৬৭৮</span><span>•</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Header ===== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#home" class="brand" aria-label="MeTriqo">
+        <span class="brand__logo">
+          <!-- MeTriqo mark (SVG recreation of your logo) -->
+          <svg viewBox="0 0 64 64" width="40" height="40" aria-hidden="true">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#23c3b5" />
+                <stop offset="1" stop-color="#0c6f7a" />
+              </linearGradient>
+            </defs>
+            <path d="M20 16c0-6 5-10 12-10s12 4 12 10" fill="none" stroke="url(#g1)" stroke-width="5" stroke-linecap="round"/>
+            <path d="M10 18h44l-5 36a4 4 0 0 1-4 3.5H19a4 4 0 0 1-4-3.5L10 18z" fill="url(#g1)"/>
+            <path d="M40 26v22l8-8" fill="none" stroke="#0e2a47" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="brand__text">
+          <strong>Me<span>Triqo</span></strong>
+          <small>PREMIUM E-COMMERCE</small>
+        </span>
+      </a>
+
+      <nav class="nav" id="nav">
+        <a href="#home">হোম</a>
+        <a href="#products">পণ্য</a>
+        <a href="#features">কেন আমরা</a>
+        <a href="#order">অর্ডার</a>
+        <a href="#faq">প্রশ্নোত্তর</a>
+      </nav>
+
+      <div class="header__actions">
+        <a href="#order" class="btn btn--primary btn--sm">
+          <span>🛒</span> অর্ডার করুন
+        </a>
+        <button class="hamburger" id="hamburger" aria-label="মেনু">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="home">
+    <div class="hero__bg" aria-hidden="true">
+      <div class="blob blob--1"></div>
+      <div class="blob blob--2"></div>
+      <div class="grid-overlay"></div>
+    </div>
+
+    <div class="container hero__inner">
+      <div class="hero__copy reveal">
+        <span class="pill">🔥 আজকের সেরা ডিল</span>
+        <h1>প্রিমিয়াম কিচেন অ্যাপ্লায়েন্স, <span class="grad-text">আপনার দরজায় পৌঁছে যাবে</span></h1>
+        <p class="hero__lead">
+          MeTriqo-তে কিনুন অরিজিনাল, উন্নত মানের হোম অ্যাপ্লায়েন্স। ক্যাশ অন ডেলিভারিতে
+          পেমেন্ট করুন, ২–৩ দিনে সারা বাংলাদেশে ডেলিভারি।
+        </p>
+
+        <div class="hero__cta">
+          <a href="#order" class="btn btn--primary btn--lg pulse">এখনই অর্ডার করুন →</a>
+          <a href="#products" class="btn btn--ghost btn--lg">পণ্য দেখুন</a>
+        </div>
+
+        <div class="hero__stats">
+          <div class="stat"><b class="count" data-target="12000">0</b><span>খুশি গ্রাহক</span></div>
+          <div class="stat"><b class="count" data-target="4.9" data-decimals="1">0</b><span>গড় রেটিং</span></div>
+          <div class="stat"><b class="count" data-target="64">0</b><span>জেলায় ডেলিভারি</span></div>
+        </div>
+      </div>
+
+      <div class="hero__visual reveal" data-delay="120">
+        <div class="hero__card float">
+          <span class="badge badge--sale">-৩৩%</span>
+          <div class="hero__img">
+            <img src="assets/mixer.jpeg" alt="Scarlett সুপার হ্যান্ড মিক্সার" onerror="this.style.opacity=0;this.parentElement.classList.add('img-fallback')" />
+            <span class="img-fallback__label">assets/mixer.png যোগ করুন</span>
+          </div>
+          <div class="hero__card-body">
+            <div class="rating">★★★★★ <em>৪.৯ (১২৭+ রিভিউ)</em></div>
+            <h3>Scarlett সুপার হ্যান্ড মিক্সার — ৭ স্পিড</h3>
+            <div class="price">
+              <span class="price__new">৳১,৬৫০</span>
+              <span class="price__old">৳২,৪৫০</span>
+            </div>
+            <a href="#order" class="btn btn--primary btn--block" data-product="Scarlett সুপার হ্যান্ড মিক্সার">ডিলটি নিন</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__trust container">
+      <div class="trust-item"><span>🚚</span><div><b>দ্রুত ডেলিভারি</b><small>২–৩ দিনে সারাদেশে</small></div></div>
+      <div class="trust-item"><span>💵</span><div><b>ক্যাশ অন ডেলিভারি</b><small>পণ্য পেয়ে পেমেন্ট</small></div></div>
+      <div class="trust-item"><span>✅</span><div><b>১০০% অরিজিনাল</b><small>শুধুই আসল পণ্য</small></div></div>
+      <div class="trust-item"><span>↩️</span><div><b>সহজ রিটার্ন</b><small>পেমেন্টের আগে দেখুন</small></div></div>
+    </div>
+  </section>
+
+  <!-- ===== Products ===== -->
+  <section class="section" id="products">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">আমাদের বেস্টসেলার</span>
+        <h2>ফিচার্ড <span class="grad-text">পণ্য</span></h2>
+        <p>হাজারো গ্রাহকের পছন্দের বাছাই করা প্রিমিয়াম অ্যাপ্লায়েন্স।</p>
+      </div>
+
+      <div class="products">
+        <!-- Product 1 -->
+        <article class="card reveal">
+          <div class="card__media">
+            <span class="badge badge--sale">-৩৩%</span>
+            <img src="assets/mixer.jpeg" alt="Scarlett সুপার হ্যান্ড মিক্সার" onerror="this.style.opacity=0;this.parentElement.classList.add('img-fallback')" />
+            <span class="img-fallback__label">assets/mixer.png</span>
+          </div>
+          <div class="card__body">
+            <div class="rating">★★★★★ <em>৪.৯</em></div>
+            <h3>Scarlett সুপার হ্যান্ড মিক্সার</h3>
+            <p>৭ স্পিড • হুইস্ক, ফোল্ড ও ব্লেন্ড • সহজে ধরা যায়। মডেল HE-133।</p>
+            <div class="price">
+              <span class="price__new">৳১,৬৫০</span>
+              <span class="price__old">৳২,৪৫০</span>
+            </div>
+            <a href="#order" class="btn btn--primary btn--block" data-product="Scarlett সুপার হ্যান্ড মিক্সার">অর্ডার করুন</a>
+          </div>
+        </article>
+
+        <!-- Product 2 -->
+        <article class="card reveal" data-delay="100">
+          <div class="card__media">
+            <span class="badge badge--hot">হট</span>
+            <img src="assets/grinder.jpeg" alt="ইলেকট্রিক গ্রাইন্ডার ৩৫০W" onerror="this.style.opacity=0;this.parentElement.classList.add('img-fallback')" />
+            <span class="img-fallback__label">assets/grinder.png</span>
+          </div>
+          <div class="card__body">
+            <div class="rating">★★★★★ <em>৪.৮</em></div>
+            <h3>ইলেকট্রিক গ্রাইন্ডার — ৩৫০W</h3>
+            <p>মশলা, কফি ও দানা শক্তিশালীভাবে গুঁড়া করে। মডেল FP824।</p>
+            <div class="price">
+              <span class="price__new">৳১,২৯০</span>
+              <span class="price__old">৳১,৯০০</span>
+            </div>
+            <a href="#order" class="btn btn--primary btn--block" data-product="ইলেকট্রিক গ্রাইন্ডার ৩৫০W">অর্ডার করুন</a>
+          </div>
+        </article>
+
+        <!-- Product 3 (combo) -->
+        <article class="card card--combo reveal" data-delay="200">
+          <div class="card__media">
+            <span class="badge badge--best">সেরা ভ্যালু</span>
+            <img src="assets/combo.png" alt="মিক্সার + গ্রাইন্ডার কম্বো" onerror="this.style.opacity=0;this.parentElement.classList.add('img-fallback')" />
+            <span class="img-fallback__label">assets/combo.png</span>
+          </div>
+          <div class="card__body">
+            <div class="rating">★★★★★ <em>৫.০</em></div>
+            <h3>কম্বো: মিক্সার + গ্রাইন্ডার</h3>
+            <p>সম্পূর্ণ কিচেন কম্বো প্যাকে আরও বেশি সাশ্রয়।</p>
+            <div class="price">
+              <span class="price__new">৳২,৬৫০</span>
+              <span class="price__old">৳৪,৩৫০</span>
+            </div>
+            <a href="#order" class="btn btn--primary btn--block" data-product="মিক্সার + গ্রাইন্ডার কম্বো">অর্ডার করুন</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Features / Why Us ===== -->
+  <section class="section section--alt" id="features">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">কেন MeTriqo</span>
+        <h2>নিশ্চিন্তে <span class="grad-text">কেনাকাটা</span></h2>
+        <p>প্রিমিয়াম কেনাকাটাকে আমরা করি সহজ, নিরাপদ ও নির্ভরযোগ্য।</p>
+      </div>
+
+      <div class="features">
+        <div class="feature reveal"><div class="feature__ic">💵</div><h3>ক্যাশ অন ডেলিভারি</h3><p>কোনো অগ্রিম পেমেন্ট নেই। পণ্য হাতে পেয়ে তবেই পেমেন্ট করুন।</p></div>
+        <div class="feature reveal" data-delay="80"><div class="feature__ic">🚚</div><h3>দ্রুত ডেলিভারি</h3><p>২–৩ কর্মদিবসের মধ্যে সারা দেশে পৌঁছে যাবে।</p></div>
+        <div class="feature reveal" data-delay="160"><div class="feature__ic">🛡️</div><h3>অরিজিনাল পণ্য</h3><p>প্রতিটি পণ্য ১০০% আসল ও মান যাচাই করা।</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== How to order ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">খুবই সহজ</span>
+        <h2>কীভাবে <span class="grad-text">অর্ডার করবেন</span></h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><span class="step__n">১</span><h3>পণ্য বাছাই করুন</h3><p>আমাদের কালেকশন থেকে পছন্দের পণ্যটি বেছে নিন।</p></div>
+        <div class="step reveal" data-delay="100"><span class="step__n">২</span><h3>ফর্ম পূরণ করুন</h3><p>নাম, মোবাইল নম্বর ও ডেলিভারি ঠিকানা লিখুন।</p></div>
+        <div class="step reveal" data-delay="200"><span class="step__n">৩</span><h3>পেয়ে পেমেন্ট করুন</h3><p>ডেলিভারি নিয়ে ক্যাশ অন ডেলিভারিতে পেমেন্ট করুন। ব্যাস!</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Order form ===== -->
+  <section class="section section--order" id="order">
+    <div class="container order__grid">
+      <div class="order__intro reveal">
+        <span class="eyebrow">অর্ডার নিশ্চিত করুন</span>
+        <h2>আপনার <span class="grad-text">অর্ডার দিন</span></h2>
+        <p>নিচের তথ্যগুলো পূরণ করুন, আমাদের টিম কল করে অর্ডার নিশ্চিত করবে। ১০০% ক্যাশ অন ডেলিভারি — কোনো ঝুঁকি নেই।</p>
+        <ul class="order__list">
+          <li>✅ কোনো অগ্রিম পেমেন্ট লাগবে না</li>
+          <li>✅ ২–৩ দিনে ডেলিভারি</li>
+          <li>✅ ১০০% অরিজিনাল পণ্য</li>
+          <li>✅ বন্ধুত্বপূর্ণ কাস্টমার সাপোর্ট</li>
+        </ul>
+      </div>
+
+      <form class="order__form reveal" data-delay="120" id="orderForm" novalidate>
+        <div class="field">
+          <label for="product">পণ্য</label>
+          <select id="product" name="product">
+            <option value="Scarlett সুপার হ্যান্ড মিক্সার" data-price="1650">Scarlett সুপার হ্যান্ড মিক্সার — ৳১,৬৫০</option>
+            <option value="ইলেকট্রিক গ্রাইন্ডার ৩৫০W" data-price="1290">ইলেকট্রিক গ্রাইন্ডার ৩৫০W — ৳১,২৯০</option>
+            <option value="মিক্সার + গ্রাইন্ডার কম্বো" data-price="2650">মিক্সার + গ্রাইন্ডার কম্বো — ৳২,৬৫০</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="name">পুরো নাম</label>
+          <input type="text" id="name" name="name" placeholder="আপনার নাম" required />
+          <small class="error" data-for="name">অনুগ্রহ করে আপনার নাম লিখুন।</small>
+        </div>
+
+        <div class="field">
+          <label for="phone">মোবাইল নম্বর</label>
+          <input type="tel" id="phone" name="phone" placeholder="০১৭১২-৩৪৫৬৭৮" required />
+          <small class="error" data-for="phone">সঠিক ১১ সংখ্যার মোবাইল নম্বর দিন।</small>
+        </div>
+
+        <div class="field">
+          <label for="address">ডেলিভারি ঠিকানা</label>
+          <textarea id="address" name="address" rows="2" placeholder="বাসা, রোড, এলাকা, জেলা" required></textarea>
+          <small class="error" data-for="address">অনুগ্রহ করে আপনার ঠিকানা লিখুন।</small>
+        </div>
+
+        <div class="field">
+          <label>ডেলিভারি এলাকা</label>
+          <div class="delivery">
+            <label class="delivery__opt">
+              <input type="radio" name="delivery" value="100" data-area="ঢাকার ভেতরে" checked />
+              <span class="delivery__card">
+                <b>🏙️ ঢাকার ভেতরে</b>
+                <small>ডেলিভারি চার্জ ৳১০০</small>
+              </span>
+            </label>
+            <label class="delivery__opt">
+              <input type="radio" name="delivery" value="130" data-area="ঢাকার বাইরে" />
+              <span class="delivery__card">
+                <b>🚚 ঢাকার বাইরে</b>
+                <small>ডেলিভারি চার্জ ৳১৩০</small>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>পরিমাণ</label>
+          <div class="qty__control">
+            <button type="button" id="minus" aria-label="কমান">−</button>
+            <input type="text" id="qty" value="1" readonly aria-label="পরিমাণ" />
+            <button type="button" id="plus" aria-label="বাড়ান">+</button>
+          </div>
+        </div>
+
+        <div class="summary-box">
+          <div class="summary-row"><span>পণ্যের মূল্য</span><b id="subtotal">৳১,৬৫০</b></div>
+          <div class="summary-row"><span>ডেলিভারি চার্জ</span><b id="delivery-cost">৳১০০</b></div>
+          <div class="summary-row summary-row--total"><span>সর্বমোট</span><b id="total">৳১,৭৫০</b></div>
+        </div>
+
+        <button type="submit" class="btn btn--primary btn--lg btn--block" id="submitBtn">অর্ডার নিশ্চিত করুন ✓</button>
+        <p class="order__secure">🔒 আপনার তথ্য আমাদের কাছে সম্পূর্ণ সুরক্ষিত।</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== Reviews ===== -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">সত্যিকারের রিভিউ</span>
+        <h2>গ্রাহকরা যা <span class="grad-text">বলেন</span></h2>
+      </div>
+      <div class="reviews">
+        <figure class="review reveal">
+          <div class="rating">★★★★★</div>
+          <blockquote>"হ্যান্ড মিক্সারটা দারুণ শক্তিশালী, মাত্র ২ দিনেই পেয়ে গেছি। ক্যাশ অন ডেলিভারি থাকায় কোনো টেনশন ছিল না!"</blockquote>
+          <figcaption><b>নুসরাত জে.</b><span>ঢাকা</span></figcaption>
+        </figure>
+        <figure class="review reveal" data-delay="100">
+          <div class="rating">★★★★★</div>
+          <blockquote>"একদম আসল পণ্য, ছবির মতোই। গ্রাইন্ডারটা মশলা গুঁড়া করতে দারুণ কাজ করে। সবাইকে রেকমেন্ড করছি।"</blockquote>
+          <figcaption><b>রাকিব এইচ.</b><span>চট্টগ্রাম</span></figcaption>
+        </figure>
+        <figure class="review reveal" data-delay="200">
+          <div class="rating">★★★★★</div>
+          <blockquote>"কম্বো প্যাকটা খুব ভালো দামে পেয়েছি। ডেলিভারি দ্রুত ছিল আর সাপোর্ট টিমও খুব সহযোগী।"</blockquote>
+          <figcaption><b>শারমিন এ.</b><span>সিলেট</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section" id="faq">
+    <div class="container container--narrow">
+      <div class="section__head reveal">
+        <span class="eyebrow">সাহায্য দরকার?</span>
+        <h2>সচরাচর জিজ্ঞাসিত <span class="grad-text">প্রশ্ন</span></h2>
+      </div>
+      <div class="faq">
+        <details class="faq__item reveal" name="faq"><summary>কীভাবে অর্ডার করব?</summary><p>উপরের ফর্মে আপনার নাম, মোবাইল নম্বর ও ঠিকানা লিখুন। আমাদের টিম কল করে অর্ডার নিশ্চিত করবে।</p></details>
+        <details class="faq__item reveal" name="faq"><summary>ডেলিভারি পেতে কত সময় লাগে?</summary><p>আপনার এলাকা অনুযায়ী সাধারণত ২–৩ কর্মদিবস সময় লাগে।</p></details>
+        <details class="faq__item reveal" name="faq"><summary>ক্যাশ অন ডেলিভারিতে পেমেন্ট করা যাবে?</summary><p>হ্যাঁ! সারাদেশে ক্যাশ অন ডেলিভারি সুবিধা আছে। পণ্য পেয়ে তবেই পেমেন্ট করবেন।</p></details>
+        <details class="faq__item reveal" name="faq"><summary>পণ্য কি অরিজিনাল?</summary><p>অবশ্যই। সব পণ্য ১০০% আসল এবং পাঠানোর আগে মান যাচাই করা হয়।</p></details>
+        <details class="faq__item reveal" name="faq"><summary>সাহায্য লাগলে কী করব?</summary><p>আমাদের হটলাইনে কল করুন অথবা ফেসবুক/হোয়াটসঅ্যাপে মেসেজ দিন।</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA banner ===== -->
+  <section class="cta">
+    <div class="container cta__inner reveal">
+      <h2>আপনার কিচেন আপগ্রেড করতে প্রস্তুত?</h2>
+      <p>এখনই অর্ডার করুন আর ক্যাশ অন ডেলিভারিতে উপভোগ করুন প্রিমিয়াম মান।</p>
+      <a href="#order" class="btn btn--light btn--lg pulse">এখনই অর্ডার করুন →</a>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <div class="brand">
+          <span class="brand__logo">
+            <svg viewBox="0 0 64 64" width="36" height="36" aria-hidden="true">
+              <path d="M20 16c0-6 5-10 12-10s12 4 12 10" fill="none" stroke="#23c3b5" stroke-width="5" stroke-linecap="round"/>
+              <path d="M10 18h44l-5 36a4 4 0 0 1-4 3.5H19a4 4 0 0 1-4-3.5L10 18z" fill="#23c3b5"/>
+              <path d="M40 26v22l8-8" fill="none" stroke="#0e2a47" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="brand__text"><strong style="color:#fff">Me<span style="color:#23c3b5">Triqo</span></strong><small style="color:#9fb4c7">PREMIUM E-COMMERCE</small></span>
+        </div>
+        <p>সারা বাংলাদেশে ক্যাশ অন ডেলিভারিতে প্রিমিয়াম হোম ও কিচেন অ্যাপ্লায়েন্স।</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="WhatsApp">w</a>
+          <a href="#" aria-label="Instagram">Ins</a>
+        </div>
+      </div>
+      <div class="footer__col">
+        <h4>শপ</h4>
+        <a href="#products">হ্যান্ড মিক্সার</a>
+        <a href="#products">ইলেকট্রিক গ্রাইন্ডার</a>
+        <a href="#products">কম্বো প্যাক</a>
+      </div>
+      <div class="footer__col">
+        <h4>কোম্পানি</h4>
+        <a href="#features">কেন আমরা</a>
+        <a href="#faq">প্রশ্নোত্তর</a>
+        <a href="#order">অর্ডার</a>
+      </div>
+      <div class="footer__col">
+        <h4>যোগাযোগ</h4>
+        <a href="tel:01712345678">📞 ০১৭১২-৩৪৫৬৭৮</a>
+        <a href="mailto:help@metriqo.com">✉️ help@metriqo.com</a>
+        <span>📍 ঢাকা, বাংলাদেশ</span>
+      </div>
+    </div>
+    <div class="footer__bottom container">
+      <span>© <span id="year"></span> MeTriqo. সর্বস্বত্ব সংরক্ষিত।</span>
+      <span>ভালোবাসায় তৈরি — বাংলাদেশ ❤️</span>
+    </div>
+  </footer>
+
+  <!-- ===== Order confirmation modal ===== -->
+  <div class="modal" id="orderModal" aria-hidden="true">
+    <div class="modal__overlay" data-close></div>
+    <div class="modal__box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal__close" data-close aria-label="বন্ধ করুন">×</button>
+      <div class="modal__check">✓</div>
+      <h3 id="modalTitle">অর্ডার সফল হয়েছে! 🎉</h3>
+      <p class="modal__sub">ধন্যবাদ! আমরা শীঘ্রই কল করে আপনার অর্ডার নিশ্চিত করব।</p>
+
+      <div class="modal__id">
+        <span>অর্ডার আইডি</span>
+        <b id="m-orderid">MT-000000</b>
+      </div>
+
+      <div class="modal__details">
+        <div class="row"><span>👤 নাম</span><b id="m-name">—</b></div>
+        <div class="row"><span>📞 মোবাইল</span><b id="m-phone">—</b></div>
+        <div class="row"><span>📍 ঠিকানা</span><b id="m-address">—</b></div>
+        <div class="row"><span>📦 পণ্য</span><b id="m-product">—</b></div>
+        <div class="row"><span>🔢 পরিমাণ</span><b id="m-qty">—</b></div>
+        <div class="row"><span>🚚 ডেলিভারি এলাকা</span><b id="m-area">—</b></div>
+        <div class="row"><span>🧾 পণ্য + ডেলিভারি</span><b id="m-breakdown">—</b></div>
+        <div class="row row--total"><span>💵 সর্বমোট</span><b id="m-total">—</b></div>
+      </div>
+
+      <button class="btn btn--primary btn--block" data-close>ঠিক আছে</button>
+    </div>
+  </div>
+
+  <!-- Back to top -->
+  <button class="totop" id="totop" aria-label="উপরে যান">↑</button>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
