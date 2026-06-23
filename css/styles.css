@@ -74,8 +74,8 @@ h1,h2,h3,h4{font-family:'Poppins',sans-serif;line-height:1.15;color:var(--navy)}
 @keyframes marquee{to{transform:translateX(-50%)}}
 
 /* ---------- Header ---------- */
-.header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:box-shadow var(--t),border-color var(--t),background var(--t)}
-.header.scrolled{box-shadow:var(--shadow-sm);border-color:var(--line)}
+.header{position:-webkit-sticky;position:sticky;top:0;z-index:50;background:#ffffff;border-bottom:1px solid var(--line);transition:box-shadow var(--t);-webkit-transform:translateZ(0);transform:translateZ(0)}
+.header.scrolled{box-shadow:var(--shadow-sm)}
 .header__inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem 0}
 .brand{display:flex;align-items:center;gap:.55rem}
 .brand__img{height:50px;width:auto;display:block;border-radius:8px;transition:transform var(--t)}
