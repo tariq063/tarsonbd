@@ -38,14 +38,17 @@ function doPost(e) {
   // প্রথমবার চললে হেডার সারি যোগ করে
   if (sheet.getLastRow() === 0) {
     sheet.appendRow([
-      'Order ID', 'Time', 'Product', 'Name', 'Phone', 'Address',
+      'Order No', 'Order ID', 'Time', 'Product', 'Name', 'Phone', 'Address',
       'Quantity', 'Delivery Area', 'Delivery Charge', 'Subtotal', 'Total'
     ]);
   }
 
+  // ক্রমিক অর্ডার নম্বর (১, ২, ৩...) — হেডার বাদে কতটি সারি আছে তার পরের সংখ্যা
+  var orderNo = sheet.getLastRow();   // header = সারি ১, তাই প্রথম অর্ডার = ১
+
   var d = JSON.parse(e.postData.contents);
   sheet.appendRow([
-    d.orderId, d.time, d.product, d.name, d.phone, d.address,
+    orderNo, d.orderId, d.time, d.product, d.name, d.phone, d.address,
     d.quantity, d.deliveryArea, d.deliveryCharge, d.subtotal, d.total
   ]);
 
