@@ -32,6 +32,11 @@
 - সব কোড মুছে নিচের কোডটি পেস্ট করে **সেভ** করুন (Ctrl+S):
 
 ```javascript
+// ⬇️ এখানে আপনার Meta Pixel ID ও CAPI Access Token বসান
+var PIXEL_ID     = '1492316535975707';
+var CAPI_TOKEN   = 'PASTE_YOUR_CONVERSIONS_API_ACCESS_TOKEN_HERE';
+var TEST_EVENT_CODE = ''; // টেস্ট করার সময় Events Manager থেকে কোড বসান, লাইভে খালি রাখুন
+
 function doPost(e) {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
@@ -52,9 +57,69 @@ function doPost(e) {
     d.quantity, d.deliveryArea, d.deliveryCharge, d.subtotal, d.total
   ]);
 
+  // ---- Meta Conversions API (server-side Purchase) ----
+  try { sendPurchaseToCAPI(d); } catch (err) { /* CAPI fail করলেও অর্ডার সেভ হবে */ }
+
   return ContentService
     .createTextOutput(JSON.stringify({ result: 'success' }))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+function sendPurchaseToCAPI(d) {
+  if (!CAPI_TOKEN || CAPI_TOKEN.indexOf('PASTE_') === 0) return; // টোকেন না দিলে স্কিপ
+
+  var userData = {
+    ph: [sha256(normalizePhone(d.phone))],          // হ্যাশ করা ফোন
+    fn: [sha256((d.name || '').trim().toLowerCase())] // হ্যাশ করা নাম
+  };
+  if (d.fbp) userData.fbp = d.fbp;
+  if (d.fbc) userData.fbc = d.fbc;
+  if (d.userAgent) userData.client_user_agent = d.userAgent;
+
+  var event = {
+    event_name: 'Purchase',
+    event_time: Math.floor(Date.now() / 1000),
+    event_id: d.orderId,                 // ব্রাউজার Pixel-এর সাথে dedup হবে
+    event_source_url: d.eventSourceUrl || '',
+    action_source: 'website',
+    user_data: userData,
+    custom_data: {
+      currency: 'BDT',
+      value: Number(d.total) || 0,
+      contents: [{ id: d.product, quantity: Number(d.quantity) || 1 }],
+      content_type: 'product'
+    }
+  };
+
+  var payload = { data: [event] };
+  if (TEST_EVENT_CODE) payload.test_event_code = TEST_EVENT_CODE;
+
+  var url = 'https://graph.facebook.com/v21.0/' + PIXEL_ID +
+            '/events?access_token=' + encodeURIComponent(CAPI_TOKEN);
+
+  UrlFetchApp.fetch(url, {
+    method: 'post',
+    contentType: 'application/json',
+    payload: JSON.stringify(payload),
+    muteHttpExceptions: true
+  });
+}
+
+// ফোন নম্বর normalize: শুধু ডিজিট, দেশের কোড 880 সহ (যেমন 8801712345678)
+function normalizePhone(phone) {
+  var p = String(phone || '').replace(/\D/g, '');
+  if (p.indexOf('880') === 0) return p;
+  if (p.indexOf('0') === 0)   return '880' + p.substring(1);
+  return '880' + p;
+}
+
+// SHA-256 হ্যাশ (lowercase hex) — Meta CAPI-র জন্য আবশ্যক
+function sha256(str) {
+  if (!str) return '';
+  var bytes = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, str, Utilities.Charset.UTF_8);
+  return bytes.map(function (b) {
+    return ('0' + (b & 0xff).toString(16)).slice(-2);
+  }).join('');
 }
 ```
 

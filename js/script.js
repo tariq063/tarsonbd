@@ -18,7 +18,7 @@
 
    Leave ORDER_ENDPOINT = '' to run in demo mode (just shows a toast).
    ================================================================== */
-  const ORDER_ENDPOINT = 'https://script.google.com/macros/s/AKfycbw7duOIkjO20EDrnOkJisK6peTHQMPDlmaSnvrLA9oRGTH-adqz1nutp26_WReMszud/exec';            // <-- paste your URL here
+  const ORDER_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxyKacElqBnczOQpC0BT_okOPhLBlUXG4D3cYFGfaCxgQaO2IjLvYFq34a4pP3gMkH2EA/exec';            // <-- paste your URL here
   const ENDPOINT_TYPE  = 'sheet';       // 'formspree' | 'sheet'
 
 (function () {
@@ -28,6 +28,12 @@
   const bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
   const toBn = (input) => String(input).replace(/\d/g, (d) => bnDigits[d]);
   const fmtBn = (n) => '৳' + toBn(n.toLocaleString('en-US'));
+
+  /* ---- Cookie reader (used for Meta CAPI _fbp / _fbc) ---- */
+  const getCookie = (name) => {
+    const m = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+    return m ? m.pop() : '';
+  };
 
   /* ---- Sticky header shadow on scroll ---- */
   const header = document.getElementById('header');
@@ -228,6 +234,11 @@
       subtotal: subtotal,
       total: subtotal + delivery.charge,
       time: new Date().toLocaleString('en-GB'),
+      // ---- for Meta CAPI (server-side) match quality ----
+      fbp: getCookie('_fbp'),
+      fbc: getCookie('_fbc'),
+      userAgent: navigator.userAgent,
+      eventSourceUrl: window.location.href,
     };
 
     submitBtn.disabled = true;
@@ -236,6 +247,15 @@
     try {
       const success = await sendOrder(data);
       if (success) {
+        // Meta Pixel — Purchase (eventID = orderId, so it dedups with the CAPI event)
+        if (window.fbq) {
+          fbq('track', 'Purchase', {
+            value: data.total,
+            currency: 'BDT',
+            contents: [{ id: data.product, quantity: parseInt(data.quantity, 10) }],
+            content_type: 'product',
+          }, { eventID: data.orderId });
+        }
         showOrderModal(data);
         form.reset();
         qtyInput.value = 1;
