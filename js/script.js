@@ -121,9 +121,12 @@
     }
     const dots = dotsWrap ? [...dotsWrap.children] : [];
 
+    // squeeze transition: only the active slide is shown
+    slides.forEach((s, i) => s.classList.toggle('is-active', i === 0));
+
     const go = (n, user) => {
       idx = (n + slides.length) % slides.length;
-      track.style.transform = 'translateX(' + -idx * 100 + '%)';
+      slides.forEach((s, i) => s.classList.toggle('is-active', i === idx));
       dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
       if (user) restart();
     };
@@ -133,6 +136,12 @@
       clearInterval(timer);
       timer = setInterval(() => go(idx + 1), interval);
     };
+
+    // prev / next arrows
+    const prevBtn = root.querySelector('.carousel__arrow--prev');
+    const nextBtn = root.querySelector('.carousel__arrow--next');
+    if (prevBtn) prevBtn.addEventListener('click', () => go(idx - 1, true));
+    if (nextBtn) nextBtn.addEventListener('click', () => go(idx + 1, true));
 
     // pause while hovering
     root.addEventListener('mouseenter', () => clearInterval(timer));
