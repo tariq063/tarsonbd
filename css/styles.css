@@ -264,6 +264,7 @@ h1,h2,h3,h4{font-family:'Poppins',sans-serif;line-height:1.15;color:var(--navy)}
 
 /* delivery area radio cards */
 .delivery{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.delivery--single{grid-template-columns:1fr}
 .delivery__opt{position:relative;cursor:pointer}
 .delivery__opt input{position:absolute;top:0;left:0;width:1px;height:1px;opacity:0;pointer-events:none}
 .delivery__card{display:block;border:1.5px solid var(--line);border-radius:var(--radius-sm);padding:.8rem 1rem;background:#fffaf5;transition:border-color var(--t),box-shadow var(--t),background var(--t)}
