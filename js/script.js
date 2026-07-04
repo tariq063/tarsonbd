@@ -252,8 +252,48 @@
     return res.ok;
   };
 
+  /* ---- Anti-spam: cooldown + duplicate / rate-limit guard ---- */
+  const ORDER_COOLDOWN_MS = 60 * 1000;   // lock the button 60s after a successful order
+  const DUP_WINDOW_MS = 5 * 60 * 1000;   // block same phone+product within 5 minutes
+  const RATE_MAX = 3;                     // at most 3 orders...
+  const RATE_WINDOW_MS = 10 * 60 * 1000;  // ...per 10 minutes from one browser
+  const ORDERS_KEY = 'tb_orders';
+
+  const getRecentOrders = () => {
+    let list = [];
+    try { list = JSON.parse(localStorage.getItem(ORDERS_KEY) || '[]'); } catch (_) { list = []; }
+    const now = Date.now();
+    return list.filter((o) => o && now - o.t < RATE_WINDOW_MS);
+  };
+  const recordOrder = (sig, recent) => {
+    recent.push({ sig: sig, t: Date.now() });
+    try { localStorage.setItem(ORDERS_KEY, JSON.stringify(recent)); } catch (_) {}
+  };
+  let cooldownTimer = null;
+  const startCooldown = (baseText) => {
+    let remaining = Math.round(ORDER_COOLDOWN_MS / 1000);
+    submitBtn.disabled = true;
+    const tick = () => {
+      if (remaining <= 0) {
+        clearInterval(cooldownTimer);
+        submitBtn.disabled = false;
+        submitBtn.textContent = baseText;
+        return;
+      }
+      submitBtn.textContent = 'একটু পরে আবার (' + toBn(remaining) + ')';
+      remaining--;
+    };
+    tick();
+    cooldownTimer = setInterval(tick, 1000);
+  };
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // anti-spam honeypot: if the hidden field is filled, it's a bot — drop silently
+    const hp = document.getElementById('hp_field');
+    if (hp && hp.value.trim() !== '') return;
+
     let ok = true;
     Object.keys(validators).forEach((id) => {
       const input = document.getElementById(id);
@@ -291,11 +331,24 @@
       eventSourceUrl: window.location.href,
     };
 
+    // block duplicate & too-frequent orders from the same browser
+    const sig = data.phone + '|' + data.product;
+    const recent = getRecentOrders();
+    if (recent.some((o) => o.sig === sig && Date.now() - o.t < DUP_WINDOW_MS)) {
+      showMsg('⚠️ আপনি একটু আগেই এই অর্ডারটি করেছেন। ডেলিভারির জন্য অপেক্ষা করুন, প্রয়োজনে কল করুন।');
+      return;
+    }
+    if (recent.length >= RATE_MAX) {
+      showMsg('⚠️ অল্প সময়ে অনেকগুলো অর্ডার হয়েছে। কিছুক্ষণ পর আবার চেষ্টা করুন বা কল করুন।');
+      return;
+    }
+
     submitBtn.disabled = true;
+    let success = false;
     const original = submitBtn.textContent;
     submitBtn.textContent = 'পাঠানো হচ্ছে…';
     try {
-      const success = await sendOrder(data);
+      success = await sendOrder(data);
       if (success) {
         // Meta Pixel — Purchase (eventID = orderId, so it dedups with the CAPI event)
         if (window.fbq) {
@@ -306,6 +359,8 @@
             content_type: 'product',
           }, { eventID: data.orderId });
         }
+        // remember this order to block duplicates / rapid re-orders
+        recordOrder(sig, recent);
         showOrderModal(data);
         form.reset();
         qtyInput.value = 1;
@@ -320,6 +375,9 @@
       submitBtn.disabled = false;
       submitBtn.textContent = original;
     }
+
+    // after a real success, lock the button for a short cooldown (stops instant re-orders)
+    if (success) startCooldown(original);
   });
 
   form.querySelectorAll('input,textarea').forEach((el) =>
