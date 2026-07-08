@@ -18,7 +18,7 @@
 
    Leave ORDER_ENDPOINT = '' to run in demo mode (just shows a toast).
    ================================================================== */
-  const ORDER_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwEK3zZNNdsW8fu-FckY-22TUqPuQmMLhbxYnJ0UaEHOIOmUCivIbblBzNzTMsQ5g_J/exec';            // <-- paste your URL here
+  const ORDER_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyT8AFAIOZgGdLs0WEkMmQJVTJ3lJ_AXLoM4yEVYAEj6-W6SGTt1IYbpfCornzwsRB5_Q/exec';            // <-- paste your URL here
   const ENDPOINT_TYPE  = 'sheet';       // 'formspree' | 'sheet'
 
 (function () {
@@ -34,6 +34,29 @@
     const m = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
     return m ? m.pop() : '';
   };
+
+  /* ---- Order Overlay open / close ---- */
+  const orderOverlay = document.getElementById('order');
+  const openOrderOverlay = () => {
+    orderOverlay.classList.add('open');
+    orderOverlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+  const closeOrderOverlay = () => {
+    orderOverlay.classList.remove('open');
+    orderOverlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+  document.getElementById('closeOrder').addEventListener('click', closeOrderOverlay);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && orderOverlay.classList.contains('open')) closeOrderOverlay();
+  });
+  document.querySelectorAll('[href="#order"]').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      openOrderOverlay();
+    });
+  });
 
   /* ---- Sticky header shadow on scroll ---- */
   const header = document.getElementById('header');
@@ -179,7 +202,7 @@
     const subtotal = currentPrice() * q;
     const delivery = getDelivery().charge;
     subtotalEl.textContent = fmtBn(subtotal);
-    deliveryCostEl.textContent = fmtBn(delivery);
+    deliveryCostEl.textContent = delivery > 0 ? fmtBn(delivery) : 'ফ্রি 🎉';
     totalEl.textContent = fmtBn(subtotal + delivery);
   };
 
@@ -361,6 +384,7 @@
         }
         // remember this order to block duplicates / rapid re-orders
         recordOrder(sig, recent);
+        closeOrderOverlay();
         showOrderModal(data);
         form.reset();
         qtyInput.value = 1;
@@ -403,9 +427,9 @@
     document.getElementById('m-product').textContent = data.product;
     document.getElementById('m-qty').textContent = toBn(data.quantity);
     document.getElementById('m-area').textContent =
-      data.deliveryArea + ' (' + fmtBn(data.deliveryCharge) + ')';
+      data.deliveryArea + (data.deliveryCharge > 0 ? ' (' + fmtBn(data.deliveryCharge) + ')' : ' (ফ্রি ডেলিভারি)');
     document.getElementById('m-breakdown').textContent =
-      fmtBn(data.subtotal) + ' + ' + fmtBn(data.deliveryCharge);
+      fmtBn(data.subtotal) + ' + ' + (data.deliveryCharge > 0 ? fmtBn(data.deliveryCharge) : 'ফ্রি ডেলিভারি');
     document.getElementById('m-total').textContent = fmtBn(data.total);
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
