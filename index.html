@@ -278,11 +278,22 @@
       <form class="order__form order__form--centered reveal" id="orderForm" novalidate>
           <h4 class="form-heading">📋 আপনার তথ্য দিন</h4>
           <input type="text" name="company_website" id="hp_field" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;pointer-events:none" />
-          <div class="field">
-            <label for="product">পণ্য</label>
-            <select id="product" name="product">
-              <option value="Sanford অলরাউন্ডার টর্চ লাইট — ৩০,০০০mAh" data-price="1199">Sanford অলরাউন্ডার টর্চ লাইট (৩০,০০০mAh) — ৳১,১৯৯</option>
-            </select>
+          <!-- hidden select kept for JS price logic -->
+          <select id="product" name="product" style="display:none">
+            <option value="Sanford অলরাউন্ডার টর্চ লাইট — ৩০,০০০mAh" data-price="1199">Sanford অলরাউন্ডার টর্চ লাইট</option>
+          </select>
+
+          <div class="product-card-select">
+            <img src="assets/order-image.png" alt="Sanford টর্চ লাইট" />
+            <div class="product-card-select__info">
+              <strong>Sanford অলরাউন্ডার টর্চ লাইট (৩০,০০০mAh)</strong>
+              <div class="product-card-select__price">
+                <span class="price__new">৳১,১৯৯</span>
+                <span class="price__old">৳১,৯৯০</span>
+              </div>
+              <span class="product-card-select__savings">🔥 ৭৯১ টাকা সাশ্রয় + ফ্রি ডেলিভারি!</span>
+            </div>
+            <span class="product-card-select__check">✓</span>
           </div>
           <div class="field">
             <label for="name">পুরো নাম</label>
