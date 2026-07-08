@@ -35,29 +35,6 @@
     return m ? m.pop() : '';
   };
 
-  /* ---- Order Overlay open / close ---- */
-  const orderOverlay = document.getElementById('order');
-  const openOrderOverlay = () => {
-    orderOverlay.classList.add('open');
-    orderOverlay.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  };
-  const closeOrderOverlay = () => {
-    orderOverlay.classList.remove('open');
-    orderOverlay.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  };
-  document.getElementById('closeOrder').addEventListener('click', closeOrderOverlay);
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && orderOverlay.classList.contains('open')) closeOrderOverlay();
-  });
-  document.querySelectorAll('[href="#order"]').forEach((link) => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      openOrderOverlay();
-    });
-  });
-
   /* ---- Sticky header shadow on scroll ---- */
   const header = document.getElementById('header');
   const onScroll = () => {
@@ -384,7 +361,6 @@
         }
         // remember this order to block duplicates / rapid re-orders
         recordOrder(sig, recent);
-        closeOrderOverlay();
         showOrderModal(data);
         form.reset();
         qtyInput.value = 1;

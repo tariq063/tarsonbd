@@ -266,32 +266,42 @@
     </div>
   </section>
 
-  <!-- ===== Order Overlay (full-screen) ===== -->
-  <div class="order-overlay" id="order" aria-hidden="true">
-    <div class="order-overlay__topbar">
-      <span class="order-overlay__title">🛒 অর্ডার ফর্ম</span>
-      <button class="order-overlay__close" id="closeOrder" aria-label="বন্ধ করুন">✕</button>
-    </div>
-    <div class="order-overlay__body">
-
-      <div class="order-overlay__left">
-        <img src="assets/order-image.png" alt="Sanford অলরাউন্ডার টর্চ লাইট" />
-        <h3>Sanford অলরাউন্ডার টর্চ লাইট</h3>
-        <div class="price">
-          <span class="price__new">৳১,১৯৯</span>
-          <span class="price__old">৳১,৯৯০</span>
-        </div>
-        <ul class="order__list">
-          <li>🚚 সারা বাংলাদেশে <b>ফ্রি ডেলিভারি</b></li>
-          <li>✅ কোনো অগ্রিম পেমেন্ট লাগবে না</li>
-          <li>✅ ২–৩ দিনে ডেলিভারি</li>
-          <li>✅ ১০০% অরিজিনাল পণ্য</li>
-          <li>✅ বন্ধুত্বপূর্ণ কাস্টমার সাপোর্ট</li>
-        </ul>
+  <!-- ===== Order Form ===== -->
+  <section class="section section--order" id="order">
+    <div class="container">
+      <div class="section__head reveal">
+        <span class="eyebrow">এখনই সুযোগ নিন</span>
+        <h2>🛒 অর্ডার ফর্ম <span class="grad-text">পূরণ করুন</span></h2>
+        <p>নিচের তথ্যগুলো দিন, আমরা কল করে অর্ডার নিশ্চিত করব — কোনো অগ্রিম পেমেন্ট নেই।</p>
       </div>
 
-      <div class="order-overlay__right">
-        <form class="order__form" id="orderForm" novalidate>
+      <div class="order-main">
+        <!-- Left: product info -->
+        <div class="order-product reveal">
+          <div class="order-product__img">
+            <span class="badge badge--sale">-৪০%</span>
+            <img src="assets/order-image.png" alt="Sanford অলরাউন্ডার টর্চ লাইট" />
+          </div>
+          <div class="order-product__info">
+            <div class="rating">★★★★★ <em>৪.৯/৫ | ১২৭+ রিভিউ</em></div>
+            <h3>Sanford অলরাউন্ডার টর্চ লাইট</h3>
+            <div class="price">
+              <span class="price__new">৳১,১৯৯</span>
+              <span class="price__old">৳১,৯৯০</span>
+            </div>
+            <ul class="order__list">
+              <li>🚚 সারা বাংলাদেশে <b>ফ্রি ডেলিভারি</b></li>
+              <li>✅ কোনো অগ্রিম পেমেন্ট লাগবে না</li>
+              <li>✅ ২–৩ দিনে ডেলিভারি</li>
+              <li>✅ ১০০% অরিজিনাল পণ্য</li>
+              <li>✅ বন্ধুত্বপূর্ণ কাস্টমার সাপোর্ট</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right: form -->
+        <form class="order__form reveal" data-delay="100" id="orderForm" novalidate>
+          <h4 class="form-heading">📋 আপনার তথ্য দিন</h4>
           <input type="text" name="company_website" id="hp_field" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0;pointer-events:none" />
           <div class="field">
             <label for="product">পণ্য</label>
@@ -301,7 +311,7 @@
           </div>
           <div class="field">
             <label for="name">পুরো নাম</label>
-            <input type="text" id="name" name="name" placeholder="আপনার নাম" required />
+            <input type="text" id="name" name="name" placeholder="আপনার নাম লিখুন" required />
             <small class="error" data-for="name">অনুগ্রহ করে আপনার নাম লিখুন।</small>
           </div>
           <div class="field">
@@ -311,7 +321,7 @@
           </div>
           <div class="field">
             <label for="address">ডেলিভারি ঠিকানা</label>
-            <textarea id="address" name="address" rows="2" placeholder="বাসা, রোড, এলাকা, জেলা" required></textarea>
+            <textarea id="address" name="address" rows="3" placeholder="বাসা নং, রোড, এলাকা, জেলা" required></textarea>
             <small class="error" data-for="address">অনুগ্রহ করে আপনার ঠিকানা লিখুন।</small>
           </div>
           <div class="field">
@@ -340,13 +350,12 @@
             <div class="summary-row summary-row--total"><span>সর্বমোট</span><b id="total">৳১,১৯৯</b></div>
           </div>
           <p class="form-msg" id="formMsg" role="alert"></p>
-          <button type="submit" class="btn btn--primary btn--lg btn--block" id="submitBtn">অর্ডার নিশ্চিত করুন ✓</button>
-          <p class="order__secure">🔒 আপনার তথ্য আমাদের কাছে সম্পূর্ণ সুরক্ষিত।</p>
+          <button type="submit" class="btn btn--primary btn--lg btn--block" id="submitBtn">অর্ডার কনফার্ম করুন ✓</button>
+          <p class="order__secure">🔒 আপনার তথ্য সম্পূর্ণ সুরক্ষিত</p>
         </form>
       </div>
-
     </div>
-  </div>
+  </section>
 
   <!-- ===== Reviews ===== -->
   <section class="section section--alt">
