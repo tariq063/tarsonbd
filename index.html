@@ -320,9 +320,13 @@
             <small class="error" data-for="phone">সঠিক ১১ সংখ্যার মোবাইল নম্বর দিন।</small>
           </div>
           <div class="field">
-            <label for="address">ডেলিভারি ঠিকানা</label>
-            <textarea id="address" name="address" rows="3" placeholder="বাসা নং, রোড, এলাকা, জেলা" required></textarea>
-            <small class="error" data-for="address">অনুগ্রহ করে আপনার ঠিকানা লিখুন।</small>
+            <label>ডেলিভারি ঠিকানা <span class="required-star">*</span></label>
+            <div class="address-box">
+              <input type="text" id="address_road" name="address_road" placeholder="রোড/এলাকা" required />
+              <input type="text" id="address_thana" name="address_thana" placeholder="থানা" required />
+              <input type="text" id="address_district" name="address_district" placeholder="জেলার নাম" required />
+            </div>
+            <small class="error" data-for="address">অনুগ্রহ করে সম্পূর্ণ ঠিকানা লিখুন।</small>
           </div>
           <div class="field">
             <label>ডেলিভারি এলাকা</label>

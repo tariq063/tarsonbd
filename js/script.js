@@ -222,9 +222,11 @@
   };
 
   const validators = {
-    name: (v) => v.trim().length >= 2,
-    phone: (v) => /^01\d{9}$/.test(v.trim().replace(/\s|-/g, '')),
-    address: (v) => v.trim().length >= 6,
+    name:             (v) => v.trim().length >= 2,
+    phone:            (v) => /^01\d{9}$/.test(v.trim().replace(/\s|-/g, '')),
+    address_road:     (v) => v.trim().length >= 2,
+    address_thana:    (v) => v.trim().length >= 2,
+    address_district: (v) => v.trim().length >= 2,
   };
 
   const sendOrder = async (data) => {
@@ -295,15 +297,25 @@
     if (hp && hp.value.trim() !== '') return;
 
     let ok = true;
+    const addressFields = ['address_road', 'address_thana', 'address_district'];
     Object.keys(validators).forEach((id) => {
       const input = document.getElementById(id);
       const valid = validators[id](input.value);
-      input.closest('.field').classList.toggle('invalid', !valid);
       if (!valid) ok = false;
+      // address sub-fields share one .field wrapper — mark the wrapper invalid if any fails
+      if (addressFields.includes(id)) {
+        if (!valid) input.closest('.field').classList.add('invalid');
+      } else {
+        input.closest('.field').classList.toggle('invalid', !valid);
+      }
     });
+    // clear address wrapper if all three are now valid
+    if (addressFields.every((id) => validators[id](document.getElementById(id).value))) {
+      document.getElementById('address_road').closest('.field').classList.remove('invalid');
+    }
     if (!ok) {
       showMsg('⚠️ অনুগ্রহ করে চিহ্নিত ঘরগুলো ঠিক করুন।');
-      const firstInvalid = form.querySelector('.field.invalid input, .field.invalid textarea');
+      const firstInvalid = form.querySelector('.field.invalid input');
       if (firstInvalid) firstInvalid.focus();
       return;
     }
@@ -317,7 +329,11 @@
       product: productSel.value,
       name: document.getElementById('name').value.trim(),
       phone: document.getElementById('phone').value.trim(),
-      address: document.getElementById('address').value.trim(),
+      address: [
+        document.getElementById('address_road').value.trim(),
+        document.getElementById('address_thana').value.trim(),
+        document.getElementById('address_district').value.trim(),
+      ].filter(Boolean).join(', '),
       quantity: qtyInput.value,
       deliveryArea: delivery.area,
       deliveryCharge: delivery.charge,
@@ -363,6 +379,9 @@
         recordOrder(sig, recent);
         showOrderModal(data);
         form.reset();
+        ['address_road','address_thana','address_district'].forEach((id) => {
+          document.getElementById(id).value = '';
+        });
         qtyInput.value = 1;
         updateTotal();
       } else {
@@ -386,6 +405,14 @@
       clearMsg();
     })
   );
+  // re-validate address wrapper on every keystroke
+  ['address_road','address_thana','address_district'].forEach((id) => {
+    document.getElementById(id).addEventListener('input', () => {
+      const allFilled = ['address_road','address_thana','address_district']
+        .every((fid) => document.getElementById(fid).value.trim().length >= 2);
+      document.getElementById('address_road').closest('.field').classList.toggle('invalid', !allFilled);
+    });
+  });
 
   /* ---- Order ID generator (e.g. TB-482193) ---- */
   function makeOrderId() {
