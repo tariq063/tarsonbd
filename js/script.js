@@ -35,6 +35,20 @@
     return m ? m.pop() : '';
   };
 
+  /* ---- Clean URLs: intercept all anchor links, replace # with / in URL ---- */
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const hash = link.getAttribute('href');
+      if (hash === '#') return;
+      const target = document.querySelector(hash);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+      const cleanPath = '/' + hash.slice(1); // #order → /order
+      history.pushState(null, '', cleanPath);
+    });
+  });
+
   /* ---- Sticky header shadow on scroll ---- */
   const header = document.getElementById('header');
   const onScroll = () => {
